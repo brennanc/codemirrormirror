@@ -40,7 +40,15 @@
 /*
 		mainEditor.on("viewportChange", function (instance, from, to) {
 				var scrollPos = mainEditor.getScrollInfo();
-				replayEditor.scrollIntoView(scrollPos["left"], scrollPos["top"], scrollPos["width);
+				console.log("from:"+from+", to:"+to);
+				console.log(scrollPos);
+				var i = 5
+				//replayEditor.scrollIntoView(scrollPos["left"], scrollPos["top"], scrollPos["width);
 				});
 				*/
+		mainEditor.on("scroll", function (instance, e) {
+				var scrollPos = mainEditor.getScrollInfo();
+				var right = scrollPos["left"] + scrollPos["width"];
+				replayEditor.scrollIntoView({"left":scrollPos["left"], "top":scrollPos["top"], "right":right, "bottom":scrollPos["height"]});
+				});
 	</script>
