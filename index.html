@@ -34,16 +34,6 @@
 						replayEditor.setSelection(obj.ranges[0].anchor, obj.ranges[0].head, {scroll:true});
 					}, 0, instance, obj);
 				});
-				
-/*
-		mainEditor.on("viewportChange", function (instance, from, to) {
-				var scrollPos = mainEditor.getScrollInfo();
-				console.log("from:"+from+", to:"+to);
-				console.log(scrollPos);
-				var i = 5
-				//replayEditor.scrollIntoView(scrollPos["left"], scrollPos["top"], scrollPos["width);
-				});
-				*/
 		mainEditor.on("scroll", function (instance, e) {
 				var scrollPos = mainEditor.getScrollInfo();
 				var right = scrollPos["left"] + scrollPos["width"];
