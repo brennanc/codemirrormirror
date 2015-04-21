@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <link rel="stylesheet" href="lib/codemirror.css">
 <script src="lib/codemirror.js"></script>
-<script src="addon/edit/matchbrackets.js"></script>
+<script src="lib/addon/edit/matchbrackets.js"></script>
 <script src="lib/mode/clike.js"></script>
 <div><textarea id="edit-code"></textarea></div>
 <div><textarea id="replay-code"></textarea></div>
@@ -20,7 +20,27 @@
         mode: "text/x-java"
       });
 		mainEditor.on("change", function (instance, changeObj) {
-				i = 5
 				replayEditor.replaceRange(changeObj.text, changeObj.from, changeObj.to);
+				var line = changeObj.to.line;
+				var ch = changeObj.to.ch;
+				replayEditor.scrollIntoView({line, ch});
 				});
+		/* These events get generated on each keystroke
+		mainEditor.on("cursorActivity", function (instance) {
+				var pos = instance.getCursor();
+				replayEditor.setCursor(instance.getCursor());
+				});
+				*/
+		/* These events seem to get generated on each keystroke as well
+		mainEditor.on("beforeSelectionChange", function (instance, obj) {
+				var i = 5
+				//replayEditor.setSelection
+				});
+				*/
+/*
+		mainEditor.on("viewportChange", function (instance, from, to) {
+				var scrollPos = mainEditor.getScrollInfo();
+				replayEditor.scrollIntoView(scrollPos["left"], scrollPos["top"], scrollPos["width);
+				});
+				*/
 	</script>
